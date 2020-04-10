@@ -1,6 +1,9 @@
 import axios from "axios";
 
 export default {
+
+  //GET https://www.googleapis.com/books/v1/volumes/zyTCAlFPjgYC?key=yourAPIKey
+  
   // Gets all books
   getBooks: function() {
     return axios.get("/api/books");
