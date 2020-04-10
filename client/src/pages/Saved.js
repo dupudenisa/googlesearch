@@ -11,6 +11,7 @@ bringing them to the book on Google Books, or "Delete" a book, removing it from 
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
+import DeleteBtn from "../components/DeleteBtn";
 
 function Saved() {
     const [bookStorage, storeBooks] = useState([])
@@ -18,10 +19,10 @@ function Saved() {
 
     // Allows the Save Books method to access the state and edit them. 
     useEffect(() => {
-        saveBooks()
+        loadBooks()
     }, [])
 
-    function saveBooks() {
+    function loadBooks() {
         API.getBooks()
             .then(res =>
                 storeBooks(res.data)
@@ -29,10 +30,19 @@ function Saved() {
             .catch(err => console.log(err.message));
     };
 
-   
+    function deleteBook(id) {
+        API.deleteBook(id)
+            .then(res => loadBooks())
+            .catch(err => console.log(err.message));
+    }
+
+
 
     return (
-        <h1>This is the Saved Page</h1>
+        <div>
+            <h1>This is the Saved Page</h1>
+            <DeleteBtn />
+        </div>
     );
 }
 

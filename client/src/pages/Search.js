@@ -10,20 +10,38 @@ or "Save" a book, saving it to the Mongo database.
 -Post request, Can click Save to save the book to the mongo DB.
 */
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 
 
 function Search() {
 
-    function getGoogleBooks(){
-        
+    const [newBook, storeBooks] = useState([])
+    const [more, domore] = useState([])
 
+    // Allows the Save Books method to access the state and edit them. 
+    useEffect(() => {
+        loadBook()
+    }, [])
+
+    function loadBook(){
+        const newBook = [1, 1, 1]
+        storeBooks(newBook);
+        console.log(storeBooks)
+    }
+
+    function saveBook(newBook){
+        API.saveBook(newBook)
+            .then(res => 
+                console.log(res.data)
+            )
+            .catch(err => console.log(err.message))
     }
 
     return(
-        <h1>This is the Search Page</h1>
+        <h1 onClick={() => saveBook(newBook)}>This is the Search Page</h1>
+
     );
 }
 

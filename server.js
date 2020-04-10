@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require("mongoose")
 
@@ -18,7 +18,7 @@ app.get("*", function(req, res) {
 });
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist"
+  process.env.MONGODB_URI || "mongodb://localhost/bookseed"
 );
 
 app.listen(PORT, function() {
