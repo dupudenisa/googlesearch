@@ -1,16 +1,14 @@
-import React from "react";
-import Saved from "./pages/Saved";
-import Search from "./pages/Search";
-import Nav from "./components/Nav";
+import React,{Component} from "react";
 
-function App() {
-  return (
-    <div>
-      <Nav />
-      <Saved />
-      <Search />
-    </div>
-  );
+import Routers from "./Router";
+
+
+class App extends Component {
+
+  render() {
+      return (
+          <Routers/>
+      );
+  }
 }
-
 export default App;
